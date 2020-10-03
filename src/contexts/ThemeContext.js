@@ -2,12 +2,13 @@ import React, { createContext, Component } from 'react';
 
 export const ThemeContext = createContext();
 
+// using class provider
 class ThemeContextProvider extends Component {
 
     state = {
         isLightTheme: true,
-        light: { syntax: "#555 !important", ui: "#ddd !important", bg: "#eee !important" },
-        dark: { syntax: "#ddd !important", ui: "#333 !important", bg: "#555 !important" }
+        light: { syntax: "#555", ui: "#ddd", bg: "#eee" },
+        dark: { syntax: "#ddd", ui: "#333", bg: "#555" }
     }
 
     render() {
@@ -20,6 +21,7 @@ class ThemeContextProvider extends Component {
 
     toggleTheme = () => {
         this.setState({ isLightTheme: !this.state.isLightTheme })
+        console.log(this.state)
     }
 
 }

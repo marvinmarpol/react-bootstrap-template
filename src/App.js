@@ -4,18 +4,21 @@ import Navbar from './components/navigation-bar';
 import Home from './pages/home.js';
 import Footer from './components/footer';
 import ThemeContextProvider from './contexts/ThemeContext';
+import ArticleContextProvider from './contexts/ArticleContext';
 
 function App() {
   return (
     <div className="App">
       <ThemeContextProvider>
-        <Navbar />
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Home} />
-          </Switch>
-        </BrowserRouter>
-        <Footer />
+        <ArticleContextProvider>
+          <Navbar />
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={Home} />
+            </Switch>
+          </BrowserRouter>
+          <Footer />
+        </ArticleContextProvider>
       </ThemeContextProvider>
     </div>
   );
