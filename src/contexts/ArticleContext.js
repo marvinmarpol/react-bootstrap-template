@@ -1,29 +1,29 @@
-import React, { createContext, useState, Component } from 'react';
+import React, { createContext, useState, useReducer, useEffect, Component } from 'react';
 import uuid from 'uuid/dist/v1'
+import { articleReducer } from '../reducers/ArticleReducer';
 
 export const ArticleContext = createContext();
 
-
-// function based provider
-
+// function based provider with reducer
 const ArticleContextProvider = (props) => {
-    const [articles, setArticles] = useState([
-        { id: 1, title: "name of the wind" },
+
+    const [articles, dispatch] = useReducer(articleReducer, [
+        /* { id: 1, title: "name of the wind" },
         { id: 2, title: "name of the water" },
         { id: 3, title: "name of the fire" },
-        { id: 4, title: "name of the earth" },
-    ]);
+        { id: 4, title: "name of the earth" }, */
+    ], () => {
+        const localData = localStorage.getItem('articles');
+        return localData ? JSON.parse(localData) : [];
+    });
 
-    const addArticle = (title) =>{
-        setArticles([...articles, {title, id: uuid()}]);
-    }
-
-    const removeArticle = (id) =>{
-        setArticles(articles.filter(article => article.id !== id))
-    }
+    // triggered if something changed
+    useEffect(() =>{
+        localStorage.setItem('articles', JSON.stringify(articles));
+    }, [articles])
 
     return (
-        <ArticleContext.Provider value={{articles, removeArticle}}>
+        <ArticleContext.Provider value={{ articles, dispatch }}>
             {props.children}
         </ArticleContext.Provider>
     )
