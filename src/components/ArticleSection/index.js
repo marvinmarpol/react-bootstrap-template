@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ArticleContext } from '../../contexts/ArticleContext';
+import { ADD_ARTICLE, REMOVE_ARTICLE } from '../../reducers/ArticleReducer'
 
 const ArticleList = () => {
   // without  reducer
@@ -13,7 +14,7 @@ const ArticleList = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: 'ADD_ARTICLE', article: { title } });
+    dispatch({ type: ADD_ARTICLE, article: { title } });
     setTitle('')
   }
 
@@ -39,7 +40,7 @@ const ArticleList = () => {
         <ul>
           {articles.map(article => {
             return (
-              <li key={article.id} style={{ background: theme.ui }} onClick={() => dispatch({ type: 'REMOVE_ARTICLE', id: article.id })} >{article.title}</li>
+              <li key={article.id} style={{ background: theme.ui }} onClick={() => dispatch({ type: REMOVE_ARTICLE, id: article.id })} >{article.title}</li>
             );
           })}
         </ul>

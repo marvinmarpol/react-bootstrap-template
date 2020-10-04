@@ -1,5 +1,4 @@
 import React, { createContext, useState, useReducer, useEffect, Component } from 'react';
-import uuid from 'uuid/dist/v1'
 import { articleReducer } from '../reducers/ArticleReducer';
 
 export const ArticleContext = createContext();
