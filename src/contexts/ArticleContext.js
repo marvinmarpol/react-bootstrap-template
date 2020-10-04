@@ -23,7 +23,7 @@ const ArticleContextProvider = (props) => {
     }
 
     return (
-        <ArticleContext.Provider value={{articles, removeArticle}}>
+        <ArticleContext.Provider value={{articles, addArticle, removeArticle}}>
             {props.children}
         </ArticleContext.Provider>
     )
